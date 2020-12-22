@@ -9,8 +9,6 @@ function AnecdoteList(props) {
     props.addNotification(`you voted ${content}`, 5)
   }
 
-  console.log(props)
-
   return (
     <>
       {props.anecdotes.map(anecdote =>
@@ -19,7 +17,7 @@ function AnecdoteList(props) {
             {anecdote.content}
           </div>
           <div>
-            has {anecdote.votes}&nbsp
+            has {anecdote.votes}&nbsp;
             <button onClick={() => vote(anecdote.id,  anecdote.content)}>vote</button>
           </div>
         </div>
@@ -30,7 +28,6 @@ function AnecdoteList(props) {
 
 const mapStateToProps = (state) => {
   let { anecdote, filterSearch } = state
-  console.log(state.anecdote)
   let reg = new RegExp(filterSearch, 'gi')
   const arr = anecdote.filter(anec => reg.test(anec.content))
   return {
