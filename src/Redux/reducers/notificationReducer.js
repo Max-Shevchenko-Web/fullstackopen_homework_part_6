@@ -7,15 +7,19 @@ const notificationReducer = (state = null, action) => {
   }
 }
 
-export const addNotification = (content) => {
-  let message = `you voted ${content}`
-  return {
-    type: 'ADD_NOTIFICATION',
-    message,
+export const addNotification = (content, time) => {
+  return dispatch => {
+    dispatch({
+      type: 'ADD_NOTIFICATION',
+      message: content,
+    })
+    setTimeout(() => {
+      dispatch(clearNotification(null))
+    }, time * 1000)
   }
 }
 
-export const deleteNotification = () => {
+export const clearNotification = () => {
   return {
     type: 'ADD_NOTIFICATION',
     message: null
